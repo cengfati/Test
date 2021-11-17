@@ -81,14 +81,23 @@ public class ProgramController {
         }
     }
 
-    public void addTriangle(){
-        ListTriangle newTriangleList = new ListTriangle(-50,300,viewController);
-        
+    public void removeTriangle(){
+        TriangleList.remove();
+        // ToDO die anderen müssen noch einrücken
     }
 
-    public void deleteTriangle(){
-
+    public void insertCurrent(){
+        ListTriangle newTriangleList = new ListTriangle(-50,300,viewController); //TODO Koordinaten überarbeiten
+        TriangleList.insert(newTriangleList);
     }
+
+    public void insertLast(){
+        ListTriangle newTriangleList = new ListTriangle(-50,300,viewController); //TODO Koordinaten überarbeiten
+        TriangleList.toLast();
+        TriangleList.insert(newTriangleList);
+        // Ist es dann nicht das vorletzte???
+    }
+
     /**
      * Aufruf bei Mausklick
      * @param e das Objekt enthält alle Informationen zum Klick

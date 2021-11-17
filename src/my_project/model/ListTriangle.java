@@ -16,12 +16,11 @@ public class ListTriangle extends GraphicalObject {
         this.y = y;
         this.arrived = arrived;
         this.deleted = deleted;
+        viewController.draw(this);
     }
 
     public void update(double dt){
-        if(!arrived){
             x += 50*dt;
-        }
     }
 
     public void draw(DrawTool drawTool){
