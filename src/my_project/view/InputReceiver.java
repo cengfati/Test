@@ -35,10 +35,11 @@ public class InputReceiver implements Interactable {
     @Override
     public void keyReleased(int key) {
         if(key == KeyEvent.VK_SPACE){
-            programController.insertCurrent();
-        }
-        if(key == KeyEvent.VK_BACK_SPACE){
-            programController.removeTriangle();
+            programController.addTriangle();
+        }else if(key == KeyEvent.VK_BACK_SPACE){
+            programController.deleteTriangle();
+        } else if(key == KeyEvent.VK_RIGHT){
+            programController.moveCurrent();
         }
     }
 

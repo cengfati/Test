@@ -20,18 +20,13 @@ public class ListTriangle extends GraphicalObject {
     }
 
     public void update(double dt){
-            x += 50*dt;
     }
 
     public void draw(DrawTool drawTool){
-        drawTool.drawFilledTriangle(x,y,x+20,y, x+40,y+ 30);
+        drawTool.drawTriangle(x,y,x+20,y, x+10,y-30);
     }
 
-    public boolean tryToDelete(){
-        if(arrived){
-            deleted = true;
-            return deleted;
-        }
-        return false;
+    public void tryToDelete(){
+        viewController.removeDrawable(this);
     }
 }

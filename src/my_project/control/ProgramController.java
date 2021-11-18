@@ -4,6 +4,7 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.model.abitur.datenstrukturen.Queue;
 import KAGO_framework.model.abitur.datenstrukturen.Stack;
 import KAGO_framework.model.abitur.datenstrukturen.List;
+import my_project.model.CurrentMarker;
 import my_project.model.ListTriangle;
 import my_project.model.QueueBall;
 import my_project.model.StackSquare;
@@ -27,7 +28,9 @@ public class ProgramController {
     private QueueBall lastBallinQueue;
     private Stack<StackSquare> squareStack;
     private StackSquare squareBeforeInStack;
-    private List<ListTriangle> TriangleList;
+    private List<ListTriangle> triangleList;
+    private ListTriangle currentTriangle;
+    private CurrentMarker currentMarker;
 
     /**
      * Konstruktor
@@ -52,6 +55,10 @@ public class ProgramController {
         lastBallinQueue = null; // die letzte Kugel muss für die Animation gemerkt werden
         squareStack = new Stack<>();
         squareBeforeInStack = null;
+        triangleList = new List<>();
+        currentTriangle = null;
+       // CurrentMarker currentMarker = new CurrentMarker(-40,200,viewController);
+        currentMarker = new CurrentMarker(-40,200,viewController);
     }
 
     public void addBallToQueue(){
@@ -81,21 +88,34 @@ public class ProgramController {
         }
     }
 
-    public void removeTriangle(){
-        TriangleList.remove();
-        // ToDO die anderen müssen noch einrücken
+    public void addTriangle(){
+        if(currentTriangle == null) {
+            ListTriangle newTriangleList = new ListTriangle(40, 300, viewController);
+            triangleList.append(newTriangleList);
+            currentTriangle = newTriangleList;
+            currentMarker.setX(currentTriangle.getX()+2);
+            currentMarker.setY(currentTriangle.getY()-100);
+            currentMarker.setA(0);
+        }else{
+            ListTriangle newTriangleList = new ListTriangle(currentTriangle.getX()+40,300,viewController);
+            triangleList.append(newTriangleList);
+            currentTriangle = newTriangleList;
+            currentMarker.setX(currentTriangle.getX()+2);
+            currentMarker.setY(currentTriangle.getY()-100);
+            currentMarker.setA(0);
+        }
     }
 
-    public void insertCurrent(){
-        ListTriangle newTriangleList = new ListTriangle(-50,300,viewController); //TODO Koordinaten überarbeiten
-        TriangleList.insert(newTriangleList);
+    public void deleteTriangle(){
+        if(!triangleList.isEmpty()){
+            currentTriangle.tryToDelete();
+            triangleList.remove();
+        }
     }
 
-    public void insertLast(){
-        ListTriangle newTriangleList = new ListTriangle(-50,300,viewController); //TODO Koordinaten überarbeiten
-        TriangleList.toLast();
-        TriangleList.insert(newTriangleList);
-        // Ist es dann nicht das vorletzte???
+    public void moveCurrent(){
+        triangleList.next();
+        currentMarker.reposition(triangleList.getContent());
     }
 
     /**
