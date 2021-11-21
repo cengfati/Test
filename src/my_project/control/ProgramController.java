@@ -21,7 +21,6 @@ public class ProgramController {
 
     //Attribute
 
-
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
     private Queue<QueueBall> ballQueue;
@@ -57,7 +56,6 @@ public class ProgramController {
         squareBeforeInStack = null;
         triangleList = new List<>();
         currentTriangle = null;
-       // CurrentMarker currentMarker = new CurrentMarker(-40,200,viewController);
         currentMarker = new CurrentMarker(-40,200,viewController);
     }
 
@@ -108,9 +106,25 @@ public class ProgramController {
 
     public void deleteTriangle(){
         if(!triangleList.isEmpty()){
-            currentTriangle.tryToDelete();
+            viewController.removeDrawable(currentTriangle);
             triangleList.remove();
+            currentMarker.setX(currentMarker.getX()-40);
+            currentTriangle = getPreviousTriangle();
         }
+    }
+
+    public ListTriangle getPreviousTriangle(){
+        ListTriangle temp;
+        triangleList.toFirst();
+        while(triangleList.hasAccess()){
+            temp = triangleList.getContent();
+            triangleList.next();
+            if(triangleList.hasAccess()){
+                if(triangleList.getContent().equals(currentTriangle))
+                return temp;
+            }
+        }
+        return null;
     }
 
     public void moveCurrent(){

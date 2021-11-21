@@ -10,7 +10,7 @@ public class CurrentMarker extends GraphicalObject {
     private double height, width;
     private int a;
 
-    public CurrentMarker(double x, double y, ViewController viewController){
+    public CurrentMarker(double x, double y, ViewController viewController) {
         this.x = x;
         this.y = y;
         this.height = height;
@@ -20,17 +20,17 @@ public class CurrentMarker extends GraphicalObject {
         this.a = 0;
     }
 
-    public void draw(DrawTool drawTool){
+    public void draw(DrawTool drawTool) {
         // drawTool.setCurrentColor(0,0,0,0);
-        drawTool.drawRectangle(x,y,15,40);
-        drawTool.drawTriangle(x-7,y+40,x+7.5,y+60,x+22.5,y+40);
+        drawTool.drawRectangle(x, y, 15, 40);
+        drawTool.drawTriangle(x - 7, y + 40, x + 7.5, y + 60, x + 22.5, y + 40);
 
-        drawTool.setCurrentColor(0,0,0,a);
-        drawTool.drawText(250,150,"Es gibt kein nächstes Objekt");
-        drawTool.setCurrentColor(0,0,0,255);
+        drawTool.setCurrentColor(0, 0, 0, a);
+        drawTool.drawText(250, 150, "Es gibt kein nächstes Objekt");
+        drawTool.setCurrentColor(0, 0, 0, 255);
     }
 
-    public void reposition(ListTriangle myObject){
+    public void reposition(ListTriangle myObject) {
         if(myObject == null){
             // Springe irgendow hin, wo man sieht dass die Liste zuende ist
             setX(300);
@@ -42,9 +42,18 @@ public class CurrentMarker extends GraphicalObject {
             setX(myObject.getX());
             setY(myObject.getY());
         }
+
+      /*  if (myObject != null) {
+            setX(myObject.getX());
+            setY(myObject.getY());
+        } else {
+            setY(firstObject.getY());
+            setX(firstObject.getX());
+        } */
     }
 
     public void setA(int a) {
         this.a = a;
     }
+
 }
