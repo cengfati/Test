@@ -93,43 +93,66 @@ public class ProgramController {
             currentTriangle = newTriangleList;
             currentMarker.setX(currentTriangle.getX()+2);
             currentMarker.setY(currentTriangle.getY()-100);
-            currentMarker.setA(0);
         }else{
             ListTriangle newTriangleList = new ListTriangle(currentTriangle.getX()+40,300,viewController);
             triangleList.append(newTriangleList);
             currentTriangle = newTriangleList;
             currentMarker.setX(currentTriangle.getX()+2);
             currentMarker.setY(currentTriangle.getY()-100);
-            currentMarker.setA(0);
         }
     }
 
     public void deleteTriangle(){
         if(!triangleList.isEmpty()){
+            //moveTriangle();
             viewController.removeDrawable(currentTriangle);
-            triangleList.remove();
-            currentMarker.setX(currentMarker.getX()-40);
-            currentTriangle = getPreviousTriangle();
+            delete();
+            currentMarker.setX(currentTriangle.getX());
+
         }
     }
 
-    public ListTriangle getPreviousTriangle(){
+    public ListTriangle delete(){
         ListTriangle temp;
         triangleList.toFirst();
         while(triangleList.hasAccess()){
             temp = triangleList.getContent();
             triangleList.next();
             if(triangleList.hasAccess()){
-                if(triangleList.getContent().equals(currentTriangle))
+                if(triangleList.getContent().equals(temp))
+                    triangleList.remove();
+                    currentTriangle = temp;
+                    currentMarker.setX(currentTriangle.getX());
                 return temp;
             }
         }
         return null;
     }
 
-    public void moveCurrent(){
-        triangleList.next();
-        currentMarker.reposition(triangleList.getContent());
+    public void moveMarker(){
+        if(!triangleList.isEmpty()) {
+            triangleList.next();
+            if ((triangleList.getContent() == null)) {
+                triangleList.toFirst();
+                currentTriangle = triangleList.getContent();
+                currentMarker.setX(currentTriangle.getX());
+            }else{
+                currentTriangle = triangleList.getContent();
+                currentMarker.setX(currentTriangle.getX());
+            }
+        }
+    }
+
+    public void moveTriangle(){
+        ListTriangle temp;
+        triangleList.toFirst();
+        while(triangleList.hasAccess()){
+            temp = triangleList.getContent();
+            if(!(triangleList.getContent().getX() - temp.getX() > 40)){
+                triangleList.getContent().setX(temp.getX()+40);
+            }
+            triangleList.next();
+        }
     }
 
     /**

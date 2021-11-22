@@ -39,7 +39,7 @@ public class InputReceiver implements Interactable {
         }else if(key == KeyEvent.VK_BACK_SPACE){
             programController.deleteTriangle();
         } else if(key == KeyEvent.VK_RIGHT){
-            programController.moveCurrent();
+            programController.moveMarker();
         }
     }
 

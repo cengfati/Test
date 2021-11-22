@@ -32,15 +32,7 @@ public class CurrentMarker extends GraphicalObject {
 
     public void reposition(ListTriangle myObject) {
         if(myObject == null){
-            // Springe irgendow hin, wo man sieht dass die Liste zuende ist
-            setX(300);
-            setY(50);
-            setA(255);
 
-        } else {
-          // NImm die Koordinaten von myObject, dann gehe dahin
-            setX(myObject.getX());
-            setY(myObject.getY());
         }
 
       /*  if (myObject != null) {
