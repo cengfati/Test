@@ -32,9 +32,9 @@ public class ProgramController {
     private CurrentMarker currentMarker;
 
     private CircleAr[][] circleArray;
-    private RectangleArray recField;
-
+    private RectangleField recField;
     private CircleAr circle;
+    private CurrentRec currentRec;
 
     /**
      * Konstruktor
@@ -66,31 +66,53 @@ public class ProgramController {
         currentMarker = new CurrentMarker(-40,200,viewController);
         //Für Array
         circleArray = new CircleAr[8][4];
-        recField = new RectangleArray(100,150,viewController);
+        recField = new RectangleField(100,150,viewController);
         circle = new CircleAr(-50,-1000,viewController);
+        currentRec = new CurrentRec(100, 150, viewController);
     }
 
     public void addRectangleToArray(){
         //TODO Nicht erzeugen, wenn außerhalb des Rechtecks
-        CircleAr newCircle= new CircleAr(100 + circle.getReihe()*40, 150 + circle.getSpalte() * 40, viewController);
-        circleArray[circle.getReihe()][circle.getSpalte()] = newCircle;
+        if(circle.getReihe() >= 0 && circle.getReihe() <= 7 && circle.getSpalte() >= 0 && circle.getSpalte() <= 3){
+            if(circleArray[circle.getReihe()][circle.getSpalte()] == null){
+                CircleAr newCircle = new CircleAr(100 + circle.getReihe() * 40, 150 + circle.getSpalte() * 40, viewController);
+                circleArray[circle.getReihe()][circle.getSpalte()] = newCircle;
+            }
+        }
     }
 
     public void moveRight(){
+        currentRec.setX(currentRec.getX()+40);
         circle.setReihe(circle.getReihe()+1);
         //TODO hier muss noch irgendwie current gezeigt werde/ Farbe verändert
     }
 
     public void moveLeft(){
+        currentRec.setX(currentRec.getX()-40);
         circle.setReihe(circle.getReihe()-1);
     }
 
     public void moveUp(){
+        currentRec.setY(currentRec.getY()-40);
         circle.setSpalte(circle.getSpalte()-1);
     }
 
     public void moveDown(){
+        currentRec.setY(currentRec.getY()+40);
         circle.setSpalte(circle.getSpalte()+1);
+    }
+
+    public void removeCircle(){
+        viewController.removeDrawable(circleArray[circle.getReihe()][circle.getSpalte()]);
+        circleArray[circle.getReihe()][circle.getSpalte()] = null;
+    }
+
+    public void changeColor(){
+        if(circleArray[circle.getReihe()][circle.getSpalte()].getG() == 0) {
+            circleArray[circle.getReihe()][circle.getSpalte()].setG(255);
+        }else{
+            circleArray[circle.getReihe()][circle.getSpalte()].setG(0);
+        }
     }
 
     public void addBallToQueue(){

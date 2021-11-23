@@ -4,11 +4,11 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 
-public class RectangleArray extends GraphicalObject {
+public class RectangleField extends GraphicalObject {
 
     private ViewController viewController;
 
-    public RectangleArray(double x, double y, ViewController viewController) {
+    public RectangleField(double x, double y, ViewController viewController) {
         this.x = x;
         this.y = y;
         this.viewController = viewController;

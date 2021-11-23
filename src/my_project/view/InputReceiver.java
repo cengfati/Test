@@ -54,6 +54,10 @@ public class InputReceiver implements Interactable {
             programController.moveUp();
         } else if(key == KeyEvent.VK_DOWN){
             programController.moveDown();
+        } else if(key == KeyEvent.VK_BACK_SPACE){
+            programController.removeCircle();
+        } else if(key == KeyEvent.VK_C){
+            programController.changeColor();
         }
     }
 
