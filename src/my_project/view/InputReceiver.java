@@ -46,6 +46,14 @@ public class InputReceiver implements Interactable {
         //Für Array
         if(key == KeyEvent.VK_SPACE){
             programController.addRectangleToArray();
+        } else if(key == KeyEvent.VK_RIGHT){
+            programController.moveRight();
+        } else if(key == KeyEvent.VK_LEFT){
+            programController.moveLeft();
+        } else if(key == KeyEvent.VK_UP){
+            programController.moveUp();
+        } else if(key == KeyEvent.VK_DOWN){
+            programController.moveDown();
         }
     }
 

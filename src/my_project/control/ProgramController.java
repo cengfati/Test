@@ -31,8 +31,10 @@ public class ProgramController {
     private ListTriangle currentTriangle;
     private CurrentMarker currentMarker;
 
-    private RectangleArray[][] recArray;
+    private CircleAr[][] circleArray;
     private RectangleArray recField;
+
+    private CircleAr circle;
 
     /**
      * Konstruktor
@@ -63,12 +65,32 @@ public class ProgramController {
         currentTriangle = null;
         currentMarker = new CurrentMarker(-40,200,viewController);
         //Für Array
-        recArray = new RectangleArray[8][4];
+        circleArray = new CircleAr[8][4];
         recField = new RectangleArray(100,150,viewController);
+        circle = new CircleAr(-50,-1000,viewController);
     }
 
     public void addRectangleToArray(){
+        //TODO Nicht erzeugen, wenn außerhalb des Rechtecks
+        CircleAr newCircle= new CircleAr(100 + circle.getReihe()*40, 150 + circle.getSpalte() * 40, viewController);
+        circleArray[circle.getReihe()][circle.getSpalte()] = newCircle;
+    }
 
+    public void moveRight(){
+        circle.setReihe(circle.getReihe()+1);
+        //TODO hier muss noch irgendwie current gezeigt werde/ Farbe verändert
+    }
+
+    public void moveLeft(){
+        circle.setReihe(circle.getReihe()-1);
+    }
+
+    public void moveUp(){
+        circle.setSpalte(circle.getSpalte()-1);
+    }
+
+    public void moveDown(){
+        circle.setSpalte(circle.getSpalte()+1);
     }
 
     public void addBallToQueue(){
