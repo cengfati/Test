@@ -4,10 +4,7 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.model.abitur.datenstrukturen.Queue;
 import KAGO_framework.model.abitur.datenstrukturen.Stack;
 import KAGO_framework.model.abitur.datenstrukturen.List;
-import my_project.model.CurrentMarker;
-import my_project.model.ListTriangle;
-import my_project.model.QueueBall;
-import my_project.model.StackSquare;
+import my_project.model.*;
 import my_project.view.InputReceiver;
 
 import java.awt.event.MouseEvent;
@@ -23,13 +20,19 @@ public class ProgramController {
 
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
+
     private Queue<QueueBall> ballQueue;
     private QueueBall lastBallinQueue;
+
     private Stack<StackSquare> squareStack;
     private StackSquare squareBeforeInStack;
+
     private List<ListTriangle> triangleList;
     private ListTriangle currentTriangle;
     private CurrentMarker currentMarker;
+
+    private RectangleArray[][] recArray;
+    private RectangleArray recField;
 
     /**
      * Konstruktor
@@ -52,11 +55,20 @@ public class ProgramController {
         // Für die Queue:
         ballQueue = new Queue<>();
         lastBallinQueue = null; // die letzte Kugel muss für die Animation gemerkt werden
+        // Für Stack
         squareStack = new Stack<>();
         squareBeforeInStack = null;
+        // Für List
         triangleList = new List<>();
         currentTriangle = null;
         currentMarker = new CurrentMarker(-40,200,viewController);
+        //Für Array
+        recArray = new RectangleArray[8][4];
+        recField = new RectangleArray(100,150,viewController);
+    }
+
+    public void addRectangleToArray(){
+
     }
 
     public void addBallToQueue(){

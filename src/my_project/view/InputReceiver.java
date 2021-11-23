@@ -6,6 +6,7 @@ import my_project.control.ProgramController;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.security.Key;
 
 /**
  * Realisiert ein Objekt, dass alle Eingaben empfängt und dann danach passende Methoden
@@ -34,12 +35,17 @@ public class InputReceiver implements Interactable {
 
     @Override
     public void keyReleased(int key) {
-        if(key == KeyEvent.VK_SPACE){
+        // Für List
+      /*  if(key == KeyEvent.VK_SPACE){
             programController.addTriangle();
         }else if(key == KeyEvent.VK_BACK_SPACE){
             programController.deleteTriangle();
         } else if(key == KeyEvent.VK_RIGHT){
             programController.moveMarker();
+        } */
+        //Für Array
+        if(key == KeyEvent.VK_SPACE){
+            programController.addRectangleToArray();
         }
     }
 
